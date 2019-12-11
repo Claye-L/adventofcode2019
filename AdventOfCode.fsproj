@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="AgentProcessingTests.fs" />
+    <Compile Include="IntCodeComputer.fs" />
+    <Compile Include="IntCodeComputerTests.fs" />
+    <Content Include="sixinput.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Six.fs" />
+    <Compile Include="Seven.fs" />
+    <Compile Include="Five.fs" />
+    <Compile Include="Four.fs" />
+    <Compile Include="Three.fs" />
+    <Compile Include="TwoOne.fs" />
+    <Compile Include="OneOne.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>
