@@ -3,6 +3,7 @@
 open System
 open Four
 open AgentProcessing
+open DayEight
 
 
 let postmessageasync (messenger : IntcodeVmMessenger) = async {
@@ -32,5 +33,6 @@ let main argv =
     //printfn "%d" messenger.Receive
     //Async.Start (postmessageasync messenger)
     //printfn "%d" messenger.Receive
-    printfn "%A" Seven.Seven2
+    //printfn "%A" Seven.Seven2
+    printfn "%d" EightOne
     0 
