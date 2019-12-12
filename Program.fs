@@ -1,15 +1,13 @@
 ﻿// Learn more about F# at http://fsharp.org
 
 open System
-open Four
-open AgentProcessing
-open DayEight
 
 
-let postmessageasync (messenger : IntcodeVmMessenger) = async {
-    Threading.Thread.Sleep(1000)
-    messenger.AddOutput (20)
-}
+
+//let postmessageasync (messenger : IntcodeVmMessenger) = async {
+//    Threading.Thread.Sleep(1000)
+//    messenger.AddOutput (20)
+//}
 
 [<EntryPoint>]
 let main argv =
@@ -35,5 +33,6 @@ let main argv =
     //printfn "%d" messenger.Receive
     //printfn "%A" Seven.Seven2
     //printfn "%d" EightOne
-    EightTwo
+    //EightTwo
+    DayNine.NineOne
     0 

@@ -1,7 +1,7 @@
 ﻿module Seven
 open IntCodeComputer
-open AgentProcessing
 open System.Threading
+open AgentProcessings.AgentProcessing
 
 let distrib e L =
     let rec aux pre post = 

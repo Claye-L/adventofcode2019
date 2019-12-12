@@ -33,6 +33,7 @@ module BigIntAgent =
     type IntCodeMsg =
         |Output of bigint
         |Input of AsyncReplyChannel<bigint>
+        |Flush of AsyncReplyChannel<bigint list>
 
     type IntcodeVmMessenger () =
         let inputAgent = MailboxProcessor.Start(fun inbox -> 
@@ -51,8 +52,11 @@ module BigIntAgent =
                 |Output (b) ->  //printfn " Outputted %d" b
                                 return! inputLoop (replyIfPossible (List.append storedOutput [b]) storedChannel)
                 |Input channel -> return! inputLoop (replyIfPossible storedOutput (List.append storedChannel [channel]))
+                |Flush channel -> channel.Reply(storedOutput)
+                                  return! inputLoop ([],[])
             }
             inputLoop ([],[])
         )
         member this.AddOutput i = inputAgent.Post (Output i)
         member this.Receive = inputAgent.PostAndReply(fun rep -> Input rep)
+        member this.Flush = inputAgent.PostAndReply(fun rep -> Flush rep)
