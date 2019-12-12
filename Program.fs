@@ -34,5 +34,6 @@ let main argv =
     //Async.Start (postmessageasync messenger)
     //printfn "%d" messenger.Receive
     //printfn "%A" Seven.Seven2
-    printfn "%d" EightOne
+    //printfn "%d" EightOne
+    EightTwo
     0 
