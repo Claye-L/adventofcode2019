@@ -1,7 +1,8 @@
 ﻿module IntCodeComputer
-open AgentProcessing
+open AgentProcessings
+open AgentProcessings.AgentProcessing
 
-type Argument = |Position of int | Immediate of int
+type Argument = |Position of int | Immediate of int |Relative of int
 type Instruction = 
     |Add of Argument * Argument * Argument
     |Mult of Argument * Argument * Argument
@@ -12,20 +13,27 @@ type Instruction =
     |JumpFalse of Argument * Argument
     |LessThan of Argument * Argument * Argument 
     |Equals of Argument * Argument * Argument
+    |IncrementBase of Argument
 
 let rec digits x = 
     match x >= 10 with
     |true -> Seq.append (digits (x/10))  [(x % 10)]
     |false -> Seq.ofList [x]
+
+let numToArg x=
+    match x with
+    |0 -> Position
+    |1 -> Immediate
+    |2 -> Relative
 let read3Args (intcode:int list) index (a,b,c)  =
-    (if a = 0 then Position else Immediate) intcode.[index + 1],
-    (if b = 0 then Position else Immediate)  intcode.[index + 2],
-    (if c = 0 then Position else Immediate)  intcode.[index + 3]
+    (numToArg a) intcode.[index + 1],
+    (numToArg b)  intcode.[index + 2],
+    (numToArg c)  intcode.[index + 3]
 let read2Args (intcode:int list) index (a,b) =
-    (if a = 0 then Position else Immediate) intcode.[index + 1],
-    (if b = 0 then Position else Immediate)  intcode.[index + 2]
+    (numToArg a) intcode.[index + 1],
+    (numToArg b)  intcode.[index + 2]
 let readArg (intcode: int list) index a =
-    (if a = 0 then Position else Immediate)intcode.[index + 1]
+    (numToArg a)intcode.[index + 1]
     
 let readOpCode (intcode: int list) index=
     let opCode = digits intcode.[index] |> Seq.toList

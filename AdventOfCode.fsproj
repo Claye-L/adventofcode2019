@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    
     <Compile Include="DayEight.fs" />
     <Compile Include="AgentProcessingTests.fs" />
+    <Compile Include="DayNineIntcodeComputer.fs" />
     <Compile Include="IntCodeComputer.fs" />
     <Compile Include="IntCodeComputerTests.fs" />
     <Content Include="sixinput.txt">
