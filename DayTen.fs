@@ -89,7 +89,7 @@ type AngleCosine =
             | :? AngleCosine as y -> comp x y
             | _ -> failwith "unauthorized comparison of AngleCosine object"
 
-let vecWithPoint (a,b) (x,y) =   x - a, y - b
+let vecWithPoint (a,b) (x,y) =   x - a, (y - b) * -1
     
 let cosAngle (x,y) = 
     let right =  x >= 0
@@ -118,4 +118,4 @@ let TenTwo =
     let vec = vecWithPoint optimalPoint
     let angles = List.map (vec >> cosAngle) data |> List.sort
     let orderedRoids = scanClockwise angles
-    Seq.take 200 orderedRoids |> Seq.iteri (fun index angle -> printfn "index %d for ast %A" (index + 1) angle)
+    orderedRoids |> Seq.iteri (fun index angle -> printfn "index %d for ast %A" (index + 1) angle)
