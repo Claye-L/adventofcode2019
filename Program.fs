@@ -35,8 +35,8 @@ let main argv =
     //printfn "%d" EightOne
     //EightTwo
     //DayNine.NineOne
-    DayTen.TenOne
-    
+    //DayTen.TenOne
+    DayTen.TenTwo
     
     
     0 

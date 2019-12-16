@@ -74,17 +74,17 @@ let optimalPoint = (20,20)
 
 [<StructuralEquality; CustomComparison>]
 type AngleCosine =
-    |R of float
-    |L of float
+    |R of float * (int*int)
+    |L of float * (int*int)
     
     interface System.IComparable with
         member x.CompareTo yobj =
             let comp x y =
                 match x,y with
-                |R a, R b -> compare b a
+                |R (a, _) , R (b , _) -> compare b a
                 |R _, L _ -> -1
                 |L _, R _ -> 1
-                |L a, L b -> compare b a
+                |L (a,_), L (b,_) -> compare b a
             match yobj  with
             | :? AngleCosine as y -> comp x y
             | _ -> failwith "unauthorized comparison of AngleCosine object"
@@ -97,4 +97,25 @@ let cosAngle (x,y) =
     let dotproduct = a * x + b * y
     let normproduct = float 1 + ( (float >>  Math.Sqrt) (x * x + y * y))
     let cos = float dotproduct / (normproduct)
-    (if right then R else L)  
+    (if right then R else L)  (cos, (x,y))
+
+let scanClockwise roids =
+    let rec takeFirstLayer items (rejects: AngleCosine list) (s: Set<AngleCosine>) = seq {
+        match items with
+        |a :: tail -> match s.Contains a with
+                      |false -> yield a
+                                yield! takeFirstLayer tail rejects (s.Add a)
+                      |true -> yield! takeFirstLayer tail (a::rejects) s
+        |[] -> match rejects.Length > 0 with
+               |true -> yield! takeFirstLayer (List.rev rejects) [] Set.empty
+               |false -> ()
+        }
+    takeFirstLayer roids [] Set.empty
+let associate x f =
+    x, f x
+let TenTwo =
+    let data = parseData rawData |> List.filter ((<>) optimalPoint)
+    let vec = vecWithPoint optimalPoint
+    let angles = List.map (vec >> cosAngle) data |> List.sort
+    let orderedRoids = scanClockwise angles
+    Seq.take 200 orderedRoids |> Seq.iteri (fun index angle -> printfn "index %d for ast %A" (index + 1) angle)
