@@ -36,7 +36,7 @@ let main argv =
     //EightTwo
     //DayNine.NineOne
     //DayTen.TenOne
-    DayTen.TenTwo
+    //DayTen.TenTwo
     
     
     0 
