@@ -95,6 +95,7 @@ let executeEquals (intcode: int list) (a,b,c) =
     intcode |> List.mapi (fun i item -> if i = getPos then (if getValue a = getValue b then 1 else 0) else item)
 
 let rec computeProgram (intcode: int list) (input: int list) output index=
+    printfn "computer run"
     match readOpCode intcode index with
     |Finish -> intcode,output
     |Add (a,b,c) -> computeProgram (executeAdd intcode (a,b,c)) input output (index + 4)
