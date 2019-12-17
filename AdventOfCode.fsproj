@@ -7,6 +7,10 @@
 
   <ItemGroup>
     
+    
+    
+    
+    
     <Compile Include="DayTen.fs" />
     <!--<Compile Include="DayEight.fs" />-->
     <Compile Include="AgentProcessingTests.fs" />
@@ -17,7 +21,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <!--<Compile Include="DayNine.fs" />-->
+    <Compile Include="DayNineIntcodeComputer.fs" />
     <Compile Include="DayEleven.fs" />
+    <Compile Include="DayNine.fs" />
     <Compile Include="Six.fs" />
     <Compile Include="Seven.fs" />
     <Compile Include="Five.fs" />
