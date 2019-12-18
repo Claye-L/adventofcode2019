@@ -1,5 +1,6 @@
 ﻿open System
 open DayTwelve
+open DayThirteen
 
 let printInConsole (x,y) (offsetx,offsety) =
     Console.SetCursorPosition (offsetx + x * 2, offsety + y)
@@ -7,6 +8,5 @@ let printInConsole (x,y) (offsetx,offsety) =
 
 [<EntryPoint>]
 let main argv =
-    TwelveOne
-    TwelveTwo
+    ThirteenOne
     0 
