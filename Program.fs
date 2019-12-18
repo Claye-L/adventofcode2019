@@ -8,5 +8,6 @@ let printInConsole (x,y) (offsetx,offsety) =
 
 [<EntryPoint>]
 let main argv =
-    ThirteenOne
+    let (vm,state) = ThirteenTwo
+    printfn "%A" <| state.Score
     0 
