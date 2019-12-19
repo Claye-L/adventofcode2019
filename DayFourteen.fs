@@ -35,7 +35,24 @@ let parseData (data:string) =
 let makeReactionMap (rs:Reaction list) =
     List.map (fun r -> getProdOfreaction r,r) rs  |> Map.ofList 
 
-let rec traverseTree m
+let getCoeff q p =
+    if p % q = 0 then p /q else 1 + p/q
+
+let sumAdd (m:SumMap) (e:Element) n =
+    match m.TryFind e with
+    |Some q -> m.Add (e,(q+n))
+    |None -> m.Add (e,n)
+let sumCoeffs (tree:ReactionMap) =
+    let m = new SumMap()
+    let makeElement (e:Element) quantity (map:SumMap) =
+        match tree.TryFind e with
+        |Some r -> let coeff = if quantity >= fst r.Product then
+                                  1
+                               else
+                                  getCoeff quantity (fst r.Product) 
+                   List.map (fun (p,e) -> (* compute how much of e is actually consumed out of p*coef*) )  r.Reagents
+        |None -> failwith "some chemical was not in the tree"
+    
 
 let Fourteen =
     let reactions = parseData testData0
